@@ -1,0 +1,1 @@
+LyZ, patched to work better with zotero + writer2latex
