@@ -265,7 +265,7 @@ Zotero.Lyz = {
     },
     
     
-    createCiteKey: function(id,text,bib){
+    createCiteKey: function(id,text,bib,obj_key){
 	var win = this.wm.getMostRecentWindow("navigator:browser");
 	var ckre = /.*@[a-z]+\{([^,]+),{1}/;
 	var oldkey = ckre.exec(text)[1];
@@ -273,6 +273,11 @@ Zotero.Lyz = {
 	dic["zotero"] = id;
 	if (this.prefs.getCharPref("citekey") == "zotero"){
 	    var citekey = id;
+	    text = text.replace(oldkey,citekey);
+	    return [citekey,text];
+	}
+	else if (this.prefs.getCharPref("citekey") == "writer2latex"){
+	    var citekey = obj_key;
 	    text = text.replace(oldkey,citekey);
 	    return [citekey,text];
 	}
@@ -402,7 +407,7 @@ Zotero.Lyz = {
 	    var id =Zotero.Items.getLibraryKeyHash(items[i]);
 	    translation.setItems([items[i]]);
 	    translation.translate();
-	    var ct = this.createCiteKey(id,text,bib);
+	    var ct = this.createCiteKey(id,text,bib,items[i].key);
 	    tmp[id] = [ct[0],ct[1]];
 	}
 	return tmp;
