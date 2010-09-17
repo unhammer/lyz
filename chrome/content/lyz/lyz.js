@@ -157,10 +157,15 @@ Zotero.Lyz = {
 	var params, inn, out;
 	var win = this.wm.getMostRecentWindow("navigator:browser"); 
 	
+	var translation = new Zotero.Translate("export");
+	var translators = translation.getTranslators();
+
 	params = {inn:{
                       citekey:this.prefs.getCharPref("citekey"),
 	    	      lyxserver:this.prefs.getCharPref("lyxserver"),
-	    	      translator:this.prefs.getCharPref("translator")},
+	              selectedTranslator:this.prefs.getCharPref("selectedTranslator"),
+                      translators:translators
+	              },
 	    	  out:null};
 	win.openDialog("chrome://lyz/content/settings.xul", "",
 	    	       "chrome, dialog, modal, centerscreen, resizable=yes", params);
@@ -168,7 +173,7 @@ Zotero.Lyz = {
 	if (params.out) {
 	    this.prefs.setCharPref("citekey",params.out.citekey);
 	    this.prefs.setCharPref("lyxserver",params.out.lyxserver);
-	    this.prefs.setCharPref("translator",params.out.translator);
+	    this.prefs.setCharPref("selectedTranslator",params.out.selectedTranslator);
 	}
     },
     
@@ -397,7 +402,7 @@ Zotero.Lyz = {
 	};
 	var win = this.wm.getMostRecentWindow("navigator:browser");
 	var translation = new Zotero.Translate("export");
-	var translatorID = this.prefs.getCharPref("translator");
+	var translatorID = this.prefs.getCharPref("selectedTranslator");
 	if(translatorID.replace(/^\s\s*/, '').replace(/\s\s*$/, '') == '') {
 	    // set to the default BibTeX.js translator ID:
 	    translatorID = '9cb70025-a888-4a29-a210-93ec52da40d4';
