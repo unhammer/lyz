@@ -17,6 +17,10 @@
 	<label value="Cite Key"/>
 	<textbox id="citekey"/>
       </row>
+      <row align="center">
+	<label value="Translator ID (leave empty for default BibTeX)"/>
+	<textbox id="translator"/>
+      </row>
     </rows>
   </grid>
 </dialog>

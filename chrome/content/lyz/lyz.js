@@ -159,15 +159,17 @@ Zotero.Lyz = {
 	
 	params = {inn:{
                       citekey:this.prefs.getCharPref("citekey"),
-	    	      lyxserver:this.prefs.getCharPref("lyxserver")},
-	    	  out:null};       
+	    	      lyxserver:this.prefs.getCharPref("lyxserver"),
+	    	      translator:this.prefs.getCharPref("translator")},
+	    	  out:null};
 	win.openDialog("chrome://lyz/content/settings.xul", "",
 	    	       "chrome, dialog, modal, centerscreen, resizable=yes", params);
 	
 	if (params.out) {
 	    this.prefs.setCharPref("citekey",params.out.citekey);
 	    this.prefs.setCharPref("lyxserver",params.out.lyxserver);
-	}	
+	    this.prefs.setCharPref("translator",params.out.translator);
+	}
     },
     
     addNewDocument: function(doc,bib) {
@@ -395,7 +397,12 @@ Zotero.Lyz = {
 	};
 	var win = this.wm.getMostRecentWindow("navigator:browser");
 	var translation = new Zotero.Translate("export");
-	translation.setTranslator('9cb70025-a888-4a29-a210-93ec52da40d4');
+	var translatorID = this.prefs.getCharPref("translator");
+	if(translatorID.replace(/^\s\s*/, '').replace(/\s\s*$/, '') == '') {
+	    // set to the default BibTeX.js translator ID:
+	    translatorID = '9cb70025-a888-4a29-a210-93ec52da40d4';
+	}	
+	translation.setTranslator(translatorID);
 	
 	translation.setHandler("done", callback);
 	//FIXME: not sure why this works, set to anything and will escape all characters
