@@ -1,0 +1,13 @@
+This is LyZ, patched to work better with Zotero (and the [[http://github.com/unhammer/zotero-natbib][zotero-natbib]]
+translator) and the Zotero-patched [[http://github.com/unhammer/writer2latex][Writer2LaTeX]].
+
+After checking out, do 
+
+#+BEGIN_SRC
+zip -r lyz.xpi ./*=
+#+END_SRC
+
+to create the plugin.
+
+See http://www.klubko.net/wp/?page_id=945&lang=en for the original LyZ
+extension.
