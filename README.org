@@ -4,7 +4,7 @@ translator) and the Zotero-patched [[http://github.com/unhammer/writer2latex][Wr
 After checking out, do 
 
 #+BEGIN_SRC
-zip -r lyz.xpi ./*=
+zip -r lyz.xpi ./*
 #+END_SRC
 
 to create the plugin.
