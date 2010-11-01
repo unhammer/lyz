@@ -7,7 +7,7 @@ After checking out, do
 zip -r lyz.xpi ./*
 #+END_SRC
 
-to create the plugin.
+to create the plugin. Open the file in Firefox to install, the restart. Now you can enter LyZ settings from Zotero, and enter the citekey format "writer2latex". You'll probably also want to select "BibTeX (natbib)" as the export style, if you installed [[http://github.com/unhammer/zotero-natbib][zotero-natbib]]. 
 
 See http://www.klubko.net/wp/?page_id=945&lang=en for the original LyZ
 extension.
